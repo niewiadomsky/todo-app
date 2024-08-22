@@ -1,6 +1,10 @@
 import './bootstrap';
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
+import { addIcons } from 'oh-vue-icons';
+import { OiCheck } from "oh-vue-icons/icons";
+
+addIcons(OiCheck);
 
 createInertiaApp({
   resolve: name => {
