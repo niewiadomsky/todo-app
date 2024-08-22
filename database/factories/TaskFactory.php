@@ -22,7 +22,7 @@ class TaskFactory extends Factory
         return [
             'title' => fake()->sentence(3),
             'category_id' => Category::factory(),
-            'is_completed' => true,
+            'is_completed' => false,
             'assigned_to' => User::factory(),
             'estimated_minutes' => floor(fake()->numberBetween(30, 300) / 10) * 10,
             'created_by' => User::factory(),
