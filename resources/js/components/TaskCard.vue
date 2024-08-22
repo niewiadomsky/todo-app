@@ -1,19 +1,28 @@
 <template>
     <label
         :for="checkboxId"
-        class="border border-gray-600 rounded-lg p-4 flex items-center cursor-pointer hover:bg-blue-200 transition-colors"
+        class="border border-gray-600 rounded-lg p-4 flex items-center cursor-pointer hover:bg-blue-200 transition-colors gap-5"
     >
-        <div class="mr-4">
+        <div>
             <Checkbox
                 :id="checkboxId"
                 v-model="task.is_completed"
                 class="w-8 h-8"
             />
         </div>
-        <div :class="{
-            'line-through decoration-2': task.is_completed
-        }">
+        <div
+            :class="[
+                'flex-1',
+                {
+                    'line-through decoration-2': task.is_completed,
+                },
+            ]"
+        >
             {{ task.title }}
+        </div>
+        <AvatarBadge :user="task.assigned_user" />
+        <div class="text-sm text-gray-600">
+            {{ relativeDate }}
         </div>
     </label>
 </template>
@@ -22,12 +31,18 @@
 import type { Task } from "@/types";
 import Checkbox from "./Checkbox.vue";
 import { computed } from "vue";
+import AvatarBadge from "./AvatarBadge.vue";
+import { formatRelative } from "date-fns";
 
 const props = defineProps<{
     task: Task;
 }>();
 
 const checkboxId = computed(() => `checkbox-${props.task.id}`);
+
+const relativeDate = computed(() =>
+    formatRelative(new Date(props.task.created_at), new Date())
+);
 </script>
 
 <style scoped></style>

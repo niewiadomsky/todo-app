@@ -17,6 +17,7 @@
     "dependencies": {
         "@inertiajs/vue3": "^1.2.0",
         "@vitejs/plugin-vue": "^5.1.2",
+        "date-fns": "^3.6.0",
         "oh-vue-icons": "^1.0.0-rc3",
         "vue": "^3.4.38"
     }
