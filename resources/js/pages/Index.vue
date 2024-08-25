@@ -1,16 +1,16 @@
 <template>
     <div class="p-4">
-        <TaskList :tasks="tasks"/>
+        <TaskList :tasks="tasks" />
     </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
-import type { Task } from '@/types'
+import type { AssignedUser, Task } from '@/types'
 import TaskList from '@/components/TaskList.vue';
 
 const props = defineProps<{
-    tasks: Task[]
+    tasks: Task[],
+    defaultUsers: AssignedUser[]
 }>()
 
 console.log(props.tasks);
