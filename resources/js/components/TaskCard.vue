@@ -1,6 +1,5 @@
 <template>
-    <label
-        :for="checkboxId"
+    <div
         class="border border-gray-600 rounded-lg p-4 flex items-center cursor-pointer hover:bg-blue-200 transition-colors gap-5"
     >
         <div>
@@ -10,7 +9,8 @@
                 class="w-8 h-8"
             />
         </div>
-        <div
+        <label
+            :for="checkboxId"
             :class="[
                 'flex-1',
                 {
@@ -19,12 +19,12 @@
             ]"
         >
             {{ task.title }}
-        </div>
+        </label>
         <AvatarBadge :user="task.assigned_user" />
         <div class="text-sm text-gray-600">
             {{ relativeDate }}
         </div>
-    </label>
+    </div>
 </template>
 
 <script setup lang="ts">
