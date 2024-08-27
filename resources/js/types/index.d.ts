@@ -19,3 +19,9 @@ export interface AssignedUser {
     name: string;
     avatar_url: string;
 }
+export interface LoggedUser {
+    id: number;
+    name: string;
+    email: string;
+    avatar_url: string;
+}
