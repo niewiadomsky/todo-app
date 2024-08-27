@@ -2,6 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Resources\CategoryResource;
+use App\Models\Category;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -35,10 +38,15 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        if (!$request->user()) {
+            return parent::share($request);
+        }
+
         return array_merge(parent::share($request), [
-            'user' => fn () => $request->user()
-                ? $request->user()->only('id', 'name', 'email', 'avatar_url')
-                : null,
+            'user' => fn () => $request->user()->only('id', 'name', 'email', 'avatar_url'),
+            'all_tasks_count' => fn () => Task::count(),
+            'user_tasks_count' => fn () => $request->user()->tasks()->count(),
+            'categories' => fn () => CategoryResource::collection(Category::withCount('tasks')->orderBy('tasks_count', 'desc')->limit(10)->get()),
         ]);
     }
 }

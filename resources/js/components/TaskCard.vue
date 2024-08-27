@@ -20,6 +20,9 @@
         >
             {{ task.title }}
         </label>
+        <div>
+            {{ task.category?.name ?? 'Bez kategorii' }}
+        </div>
         <AvatarBadge :user="task.assigned_user" />
         <div class="text-sm text-gray-600">
             {{ relativeDate }}

@@ -12,6 +12,7 @@ export interface Task {
 export interface Category {
     id: number;
     name: string;
+    tasks_count?: number;
 }
 
 export interface AssignedUser {

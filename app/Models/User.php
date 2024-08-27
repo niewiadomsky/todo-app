@@ -55,4 +55,9 @@ class User extends Authenticatable
             get: fn () => 'https://i.pravatar.cc/300?u=' . base64_encode($this->email)
         );
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'assigned_to');
+    }
 }
