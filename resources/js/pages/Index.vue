@@ -1,17 +1,19 @@
 <template>
     <DefaultLayout>
-        <TaskList :tasks="tasks" />
+        <TaskForm class="mb-4" :categories="categories"/>
+        <TaskList :tasks="tasks" :categories="categories"/>
     </DefaultLayout>
 </template>
 
 <script setup lang="ts">
-import type { AssignedUser, Task } from '@/types'
+import type { AssignedUser, Category, Task } from '@/types'
 import TaskList from '@/components/TaskList.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
+import TaskForm from '@/components/TaskForm.vue';
 
 const props = defineProps<{
     tasks: Task[],
-    defaultUsers: AssignedUser[]
+    categories: Category[]
 }>()
 
 console.log(props.tasks);

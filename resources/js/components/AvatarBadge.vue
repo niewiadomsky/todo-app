@@ -17,7 +17,7 @@
             title="Not assigned"
             @click="handleClick"
         />
-        <OnClickOutside v-if="isOpenedDropdown" @trigger="handleClickOutside" class="absolute translate-x-1/2 right-1/2 top-10 z-10">
+        <OnClickOutside v-if="isOpenedDropdown" @trigger="handleClickOutside" class="absolute  right-0 top-10 z-10">
             <AssignDropdown :assigned-user="user"/>
         </OnClickOutside>
     </div>

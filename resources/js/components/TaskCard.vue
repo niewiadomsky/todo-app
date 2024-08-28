@@ -20,9 +20,7 @@
         >
             {{ task.title }}
         </label>
-        <div>
-            {{ task.category?.name ?? 'Bez kategorii' }}
-        </div>
+        <CategorySelect :categories="categories" />
         <AvatarBadge :user="task.assigned_user" />
         <div class="text-sm text-gray-600">
             {{ relativeDate }}
@@ -31,14 +29,16 @@
 </template>
 
 <script setup lang="ts">
-import type { Task } from "@/types";
+import type { Category, Task } from "@/types";
 import Checkbox from "./Checkbox.vue";
 import { computed } from "vue";
 import AvatarBadge from "./AvatarBadge.vue";
 import { formatRelative } from "date-fns";
+import CategorySelect from './CategorySelect.vue';
 
 const props = defineProps<{
     task: Task;
+    categories: Category[]
 }>();
 
 const checkboxId = computed(() => `checkbox-${props.task.id}`);
