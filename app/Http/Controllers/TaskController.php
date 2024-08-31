@@ -17,6 +17,7 @@ class TaskController extends Controller
     {
         $tasks = Task::with('category', 'assignedUser')
             ->when($category, fn($query) => $query->where('category_id', $category->id))
+            ->latest()
             ->get();
 
         $defaultUsers = User::limit(10)->orderBy('updated_at')->get();
@@ -32,6 +33,7 @@ class TaskController extends Controller
         $tasks = $request->user()
             ->tasks()
             ->with('category', 'assignedUser')
+            ->latest()
             ->get();
 
         $defaultUsers = User::limit(10)->orderBy('updated_at')->get();
@@ -44,8 +46,12 @@ class TaskController extends Controller
     
     public function store(StoreTaskRequest $request) {
 
-        $task = Task::create($request->validated());
+        $task = Task::create([
+            ...$request->validated(),
+            'created_by' => $request->user()->id
+        ]);
 
-        return TaskResource::make($task);
+        return back();
+    }
     }
 }

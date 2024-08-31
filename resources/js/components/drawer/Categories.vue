@@ -1,13 +1,13 @@
 <template>
     <div class="flex flex-col">
         <Link href="/" class="text-white hover:bg-blue-600 p-4">
-            Wszystkie taski ({{ allTasksCount }})
+            All tasks ({{ allTasksCount }})
         </Link>
         <Link href="/me" class="text-white hover:bg-blue-600 p-4">
-            Moje taski ({{ userTasksCount }})
+            My tasks ({{ userTasksCount }})
         </Link>
         <Link
-            v-for="category in categories"
+            v-for="category in limitedCategories"
             :key="category.id"
             :href="`/categories/${category.id}`"
             class="text-white hover:bg-blue-600 p-4"
@@ -23,12 +23,17 @@
 <script setup lang="ts">
 import type { Category } from "@/types";
 import { Link } from "@inertiajs/vue3";
+import { computed } from 'vue';
 
-defineProps<{
+const props = defineProps<{
     categories: Category[];
     userTasksCount: number;
     allTasksCount: number;
 }>();
+
+const limitedCategories = computed(() => {
+    return props.categories.slice(0, 10);
+})
 </script>
 
 <style scoped></style>

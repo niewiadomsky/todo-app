@@ -10,6 +10,8 @@ class Task extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $guarded = ['id'];
+
     protected function casts()
     {
         return [

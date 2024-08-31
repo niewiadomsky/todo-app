@@ -22,12 +22,12 @@ import { OhVueIcon } from "oh-vue-icons";
 
 const settings = [
     {
-        label: "Zarządzaj użytkownikami",
+        label: "Users management",
         icon: "fa-users",
         href: "/users",
     },
     {
-        label: "Zarządzaj kategoriami",
+        label: "Categories management",
         icon: "fa-list",
         href: "/categories",
     },

@@ -5,6 +5,7 @@ export interface Task {
     estimated_minutes: number;
     created_at: string;
     updated_at: string;
+    category_id?: number;
     category?: Category;
     assigned_user?: AssignedUser;
 }

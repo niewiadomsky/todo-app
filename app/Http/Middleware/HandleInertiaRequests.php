@@ -46,7 +46,7 @@ class HandleInertiaRequests extends Middleware
             'user' => fn () => $request->user()->only('id', 'name', 'email', 'avatar_url'),
             'all_tasks_count' => fn () => Task::count(),
             'user_tasks_count' => fn () => $request->user()->tasks()->count(),
-            'categories' => fn () => CategoryResource::collection(Category::withCount('tasks')->orderBy('tasks_count', 'desc')->limit(10)->get()),
+            'categories' => fn () => CategoryResource::collection(Category::withCount('tasks')->orderBy('tasks_count', 'desc')->get()),
         ]);
     }
 }

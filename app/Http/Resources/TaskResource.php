@@ -18,6 +18,7 @@ class TaskResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'category_id' => $this->category_id,
             'is_completed' => $this->is_completed,
             'category' => CategoryResource::make($this->whenLoaded('category')),
             'assigned_user' => AssignedUserResource::make($this->whenLoaded('assignedUser')),

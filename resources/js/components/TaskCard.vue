@@ -20,7 +20,7 @@
         >
             {{ task.title }}
         </label>
-        <CategorySelect :categories="categories" />
+        <CategorySelect :categories="categories" v-model="task.category_id" />
         <AvatarBadge :user="task.assigned_user" />
         <div class="text-sm text-gray-600">
             {{ relativeDate }}

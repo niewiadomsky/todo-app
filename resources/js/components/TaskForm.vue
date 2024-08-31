@@ -10,8 +10,10 @@
                 ref="inputRef"
                 placeholder="Add a task..."
                 class="p-4 bg-transparent border-none outline-none flex-1"
+                v-model="form.title"
             />
-            <CategorySelect :categories="categories" />
+            <input type="number" placeholder="Estimated time" class="p-4 outline-none" v-model="form.estimated_time" />
+            <CategorySelect :categories="categories" v-model="form.category_id" />
             <AvatarBadge />
             <button type="submit">
                 <OhVueIcon
@@ -35,6 +37,13 @@ defineProps<{
     categories: Category[];
 }>();
 
+const form = useForm({
+    title: null,
+    assigned_to: null,
+    category_id: null,
+    estimated_time: null,
+});
+
 const inputRef = ref<HTMLInputElement | null>(null);
 
 const handleClick = () => {
@@ -42,15 +51,10 @@ const handleClick = () => {
 };
 
 const addTask = () => {
-    console.log("addTask");
+    form.post("/tasks")
 };
 
-const form = useForm({
-    name: null,
-    assigned_to: null,
-    category_id: null,
-    estimated_time: null,
-});
+
 </script>
 
 <style scoped></style>
