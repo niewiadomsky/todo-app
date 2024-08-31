@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 use App\Http\Resources\AssignedUserResource;
 use App\Http\Resources\TaskResource;
 use App\Models\Category;
@@ -16,7 +17,7 @@ class TaskController extends Controller
     public function index(?Category $category = null)
     {
         $tasks = Task::with('category', 'assignedUser')
-            ->when($category, fn($query) => $query->where('category_id', $category->id))
+            ->when($category, fn ($query) => $query->where('category_id', $category->id))
             ->latest()
             ->get();
 
@@ -24,7 +25,8 @@ class TaskController extends Controller
 
         return Inertia::render('Index', [
             'tasks' => TaskResource::collection($tasks),
-            'defaultUsers' => AssignedUserResource::collection($defaultUsers)
+            'defaultUsers' => AssignedUserResource::collection($defaultUsers),
+            'defaultCategoryId' => $category ? $category->id : null,
         ]);
     }
 
@@ -40,18 +42,32 @@ class TaskController extends Controller
 
         return Inertia::render('Index', [
             'tasks' => TaskResource::collection($tasks),
-            'defaultUsers' => AssignedUserResource::collection($defaultUsers)
+            'defaultUsers' => AssignedUserResource::collection($defaultUsers),
         ]);
     }
-    
-    public function store(StoreTaskRequest $request) {
+
+    public function store(StoreTaskRequest $request)
+    {
 
         $task = Task::create([
             ...$request->validated(),
-            'created_by' => $request->user()->id
+            'created_by' => $request->user()->id,
         ]);
 
         return back();
     }
+
+    public function update(UpdateTaskRequest $request, Task $task)
+    {
+        $task->update($request->validated());
+
+        return back();
+    }
+
+    public function destroy(Task $task)
+    {
+        $task->delete();
+
+        return back();
     }
 }

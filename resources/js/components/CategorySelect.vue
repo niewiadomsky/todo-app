@@ -1,5 +1,9 @@
 <template>
-    <select class="rounded-md p-2 border bg-blue-500 text-white focus:outline-gray-600" v-model="model">
+    <select
+        class="rounded-md p-2 border bg-blue-500 text-white focus:outline-gray-600"
+        v-model="model"
+        :disabled="disabled"
+    >
         <option :value="null">Uncategorized</option>
         <option
             v-for="category in categories"
@@ -16,6 +20,7 @@ import type { Category } from "@/types";
 
 defineProps<{
     categories: Category[];
+    disabled?: boolean;
 }>();
 
 const model = defineModel<number | null>();

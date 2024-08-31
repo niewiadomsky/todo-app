@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UserHasTime;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateTaskRequest extends FormRequest
@@ -23,9 +24,10 @@ class UpdateTaskRequest extends FormRequest
     {
         return [
             'title' => 'nullable|string',
-            'estimated_minutes' => 'nullable|integer',
+            'estimated_minutes' => ['nullable', 'integer'],
+            'is_completed' => 'nullable|boolean',
             'category_id' => 'nullable|exists:categories,id',
-            'assigned_to' => 'nullable|exists:users,id',
+            'assigned_to' => ['nullable', 'exists:users,id', new UserHasTime],
         ];
     }
 }

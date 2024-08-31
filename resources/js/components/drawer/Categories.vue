@@ -14,7 +14,7 @@
         >
             {{ category.name }} 
             {{
-                category.tasks_count ? `(${category.tasks_count})` : ""
+                category.tasks_count ? `(${category.tasks_count})` : "(0)"
             }}
         </Link>
     </div>

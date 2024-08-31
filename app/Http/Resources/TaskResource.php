@@ -22,6 +22,7 @@ class TaskResource extends JsonResource
             'is_completed' => $this->is_completed,
             'category' => CategoryResource::make($this->whenLoaded('category')),
             'assigned_user' => AssignedUserResource::make($this->whenLoaded('assignedUser')),
+            'assigned_to' => $this->assigned_to,
             'estimated_minutes' => $this->estimated_minutes,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->created_at->format('Y-m-d H:i:s'),

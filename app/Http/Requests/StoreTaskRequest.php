@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UserHasTime;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTaskRequest extends FormRequest
@@ -25,7 +26,7 @@ class StoreTaskRequest extends FormRequest
             'title' => 'required|string',
             'estimated_minutes' => 'nullable|integer',
             'category_id' => 'nullable|exists:categories,id',
-            'assigned_to' => 'nullable|exists:users,id',
+            'assigned_to' => ['nullable', 'exists:users,id', new UserHasTime],
         ];
     }
 }

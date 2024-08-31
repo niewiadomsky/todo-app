@@ -28,4 +28,9 @@ class Task extends Model
     {
         return $this->belongsTo(User::class, 'assigned_to');
     }
+
+    public function scopeNotCompleted($builder)
+    {
+        return $builder->where('is_completed', false);
+    }
 }

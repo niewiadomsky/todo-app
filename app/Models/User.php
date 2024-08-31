@@ -60,4 +60,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class, 'assigned_to');
     }
+
+    public function minutesInMonth(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->tasks()->notCompleted()->whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])->sum('estimated_minutes')
+        );
+    }
 }
