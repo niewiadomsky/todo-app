@@ -33,6 +33,7 @@ import TextInput from "./TextInput.vue";
 import ResourceModal from "./ResourceModal.vue";
 import type { User } from "@/types";
 import { watch } from "vue";
+import { baseUrl } from '@/helpers/url.helpers';
 
 const props = defineProps<{
     user?: User;
@@ -69,9 +70,9 @@ const handleSave = () => {
     };
 
     if (props.user) {
-        form.put(`/users/${props.user.id}`, options);
+        form.put(baseUrl(`/users/${props.user.id}`), options);
     } else {
-        form.post("/users", options);
+        form.post(baseUrl("/users"), options);
     }
 };
 </script>

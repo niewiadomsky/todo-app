@@ -1,15 +1,15 @@
 <template>
     <div class="flex flex-col">
-        <Link href="/" class="text-white hover:bg-blue-600 p-4">
+        <Link :href="baseUrl('/')" class="text-white hover:bg-blue-600 p-4">
             All tasks ({{ allTasksCount }})
         </Link>
-        <Link href="/me" class="text-white hover:bg-blue-600 p-4">
+        <Link :href="baseUrl('/me')" class="text-white hover:bg-blue-600 p-4">
             My tasks ({{ userTasksCount }})
         </Link>
         <Link
             v-for="category in limitedCategories"
             :key="category.id"
-            :href="`/tasks/categories/${category.id}`"
+            :href="baseUrl(`/tasks/categories/${category.id}`)"
             class="text-white hover:bg-blue-600 p-4"
         >
             {{ category.name }} 
@@ -21,6 +21,7 @@
 </template>
 
 <script setup lang="ts">
+import { baseUrl } from '@/helpers/url.helpers';
 import type { Category } from "@/types";
 import { Link } from "@inertiajs/vue3";
 import { computed } from 'vue';

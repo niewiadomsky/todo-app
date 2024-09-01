@@ -19,7 +19,7 @@
                         @click="openEditForm(resource)"
                     />
                     <Link
-                        :href="`/users/${resource.id}`"
+                        :href="baseUrl(`/users/${resource.id}`)"
                         as="button"
                         method="delete"
                     >
@@ -37,6 +37,7 @@
 <script setup lang="ts">
 import ResourceTable from '@/components/management/ResourceTable.vue';
 import UserForm from '@/components/management/UserForm.vue';
+import { baseUrl } from '@/helpers/url.helpers';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import type { User } from '@/types';
 import { Link } from '@inertiajs/vue3';

@@ -17,6 +17,7 @@
 </template>
 
 <script setup lang="ts">
+import { baseUrl } from '@/helpers/url.helpers';
 import { Link } from "@inertiajs/vue3";
 import { OhVueIcon } from "oh-vue-icons";
 
@@ -24,12 +25,12 @@ const settings = [
     {
         label: "Users management",
         icon: "fa-users",
-        href: "/users",
+        href: baseUrl("/users"),
     },
     {
         label: "Categories management",
         icon: "fa-list",
-        href: "/categories",
+        href: baseUrl("/categories"),
     },
 ];
 </script>

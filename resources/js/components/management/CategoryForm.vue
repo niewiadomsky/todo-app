@@ -22,6 +22,7 @@ import TextInput from "./TextInput.vue";
 import ResourceModal from "./ResourceModal.vue";
 import type { Category } from "@/types";
 import { watch } from "vue";
+import { baseUrl } from '@/helpers/url.helpers';
 
 const props = defineProps<{
     category?: Category;
@@ -55,9 +56,9 @@ const handleSave = () => {
     };
 
     if (props.category) {
-        form.patch(`/categories/${props.category.id}`, options);
+        form.patch(baseUrl(`/categories/${props.category.id}`), options);
     } else {
-        form.post("/categories", options);
+        form.post(baseUrl("/categories"), options);
     }
 };
 </script>

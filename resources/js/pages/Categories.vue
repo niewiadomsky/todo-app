@@ -19,7 +19,7 @@
                         @click="openEditForm(resource)"
                     />
                     <Link
-                        :href="`/categories/${resource.id}`"
+                        :href="baseUrl(`/categories/${resource.id}`)"
                         as="button"
                         method="delete"
                     >
@@ -37,6 +37,7 @@
 <script setup lang="ts">
 import CategoryForm from "@/components/management/CategoryForm.vue";
 import ResourceTable from "@/components/management/ResourceTable.vue";
+import { baseUrl } from '@/helpers/url.helpers';
 import DefaultLayout from "@/layouts/DefaultLayout.vue";
 import type { Category } from "@/types";
 import { Link } from "@inertiajs/vue3";

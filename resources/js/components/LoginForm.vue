@@ -3,7 +3,7 @@
         <div class="rounded-xl shadow-xl border p-4 border-gray-600 bg-white w-96">
             <h1 class="text-3xl my-4 text-center">Login</h1>
             <form
-                @submit.prevent="form.post('/login')"
+                @submit.prevent="form.post(baseUrl('/login'))"
                 class="flex flex-col gap-4"
             >
                 <div>
@@ -40,6 +40,7 @@
 </template>
 
 <script setup lang="ts">
+import { baseUrl } from '@/helpers/url.helpers';
 import { useForm } from "@inertiajs/vue3";
 
 const form = useForm({
