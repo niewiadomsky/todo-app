@@ -51,6 +51,7 @@ import AvatarBadge from "./AvatarBadge.vue";
 import { OhVueIcon } from "oh-vue-icons";
 import type { Category, Task } from "@/types";
 import CategorySelect from "./CategorySelect.vue";
+import { baseUrl } from '@/helpers/url.helpers';
 
 const props = defineProps<{
     categories: Category[];
@@ -80,7 +81,7 @@ const addTask = () => {
     form.transform((data) => {
         data.assigned_to = data.assigned_user?.id ?? null;
         return data;
-    }).post("/tasks", {
+    }).post(baseUrl("/tasks"), {
         onSuccess: () => {
             form.reset();
             inputRef.value?.focus();
