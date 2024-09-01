@@ -74,6 +74,7 @@ import CategorySelect from "./CategorySelect.vue";
 import { useForm } from "@inertiajs/vue3";
 import { OhVueIcon } from "oh-vue-icons";
 import { computed } from "vue";
+import { baseUrl } from '@/helpers/url.helpers';
 
 const props = defineProps<{
     task: Task;
@@ -104,7 +105,7 @@ const updateTask = () => {
         }
 
         return dirtyFields;
-    }).patch(`/tasks/${props.task.id}`, {
+    }).patch(baseUrl(`/tasks/${props.task.id}`), {
         onSuccess: () => {
             form.clearErrors();
         },
@@ -115,7 +116,7 @@ const updateTask = () => {
 };
 
 const deleteTask = async () => {
-    form.delete(`/tasks/${props.task.id}`);
+    form.delete(baseUrl(`/tasks/${props.task.id}`));
 };
 </script>
 
