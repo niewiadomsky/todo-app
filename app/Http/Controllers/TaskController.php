@@ -21,7 +21,7 @@ class TaskController extends Controller
             ->latest()
             ->get();
 
-        $defaultUsers = User::limit(10)->orderBy('updated_at')->get();
+        $defaultUsers = User::orderBy('updated_at')->get();
 
         return Inertia::render('Index', [
             'tasks' => TaskResource::collection($tasks),
@@ -38,7 +38,7 @@ class TaskController extends Controller
             ->latest()
             ->get();
 
-        $defaultUsers = User::limit(10)->orderBy('updated_at')->get();
+        $defaultUsers = User::orderBy('updated_at')->get();
 
         return Inertia::render('Index', [
             'tasks' => TaskResource::collection($tasks),
@@ -49,7 +49,7 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request)
     {
 
-        $task = Task::create([
+        Task::create([
             ...$request->validated(),
             'created_by' => $request->user()->id,
         ]);

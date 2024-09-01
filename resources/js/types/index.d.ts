@@ -30,3 +30,16 @@ export interface LoggedUser {
     email: string;
     avatar_url: string;
 }
+
+export interface ResourceTableColumn {
+    key: string;
+    label: string;
+    format?: (value: any) => string;
+}
+
+export interface User {
+    id: number;
+    name: string;
+    email: string;
+    avatar_url: string;
+}

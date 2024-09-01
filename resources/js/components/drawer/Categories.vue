@@ -9,7 +9,7 @@
         <Link
             v-for="category in limitedCategories"
             :key="category.id"
-            :href="`/categories/${category.id}`"
+            :href="`/tasks/categories/${category.id}`"
             class="text-white hover:bg-blue-600 p-4"
         >
             {{ category.name }} 

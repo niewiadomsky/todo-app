@@ -103,7 +103,6 @@ const updateTask = () => {
             }
         }
 
-        console.log({ data, dirtyFields });
         return dirtyFields;
     }).patch(`/tasks/${props.task.id}`, {
         onSuccess: () => {
