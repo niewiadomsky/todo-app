@@ -34,6 +34,10 @@
                         :disabled="form.processing"
                     />
                 </div>
+                <div class="text-center text-gray-500 text-sm">
+                    <p>Email: test@test.com</p>
+                    <p>Password: test123</p>
+                </div>
             </form>
         </div>
     </div>
